@@ -223,8 +223,8 @@ function App() {
 
       <div className="chat-container">
         <div className="chat-header">
-          <div className="avatar">🤖</div>
-          <div className="contact-name">AI助手</div>
+          <div className="avatar">{contacts.find(c => c.id === activeContact)?.avatar}</div>
+          <div className="contact-name">{contacts.find(c => c.id === activeContact)?.name}</div>
         </div>
 
         <div className="chat-messages">
@@ -263,7 +263,7 @@ function App() {
                 ) : (
                   <div className="message-text">
                     {message.isOwn ? (
-                      message.text
+                      <div>{message.text}</div>
                     ) : (
                       <ReactMarkdown components={{
                         a: ({...props}) => <a {...props} target="_blank" rel="noopener noreferrer" />,
@@ -287,7 +287,7 @@ function App() {
                 )}
                 <div className="message-time">{message.time}</div>
               </div>
-              {message.isOwn && <div className="avatar">👤</div>}
+              {message.isOwn && <div className="avatar" style={{marginRight: 0, marginLeft: '12px'}}>👤</div>}
             </div>
           ))}
           <div ref={messagesEndRef} />
