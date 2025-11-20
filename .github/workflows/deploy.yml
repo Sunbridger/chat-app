@@ -1,10 +1,21 @@
 name: Deploy to GitHub Pages
 
+# 设置权限
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+
+# 确保同时只运行一个部署
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
   build-and-deploy:
@@ -24,6 +35,8 @@ jobs:
 
     - name: Build
       run: npm run build
+      env:
+        VITE_GITHUB_PAGES: true
 
     - name: Setup Pages
       uses: actions/configure-pages@v4

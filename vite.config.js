@@ -4,5 +4,6 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/chat-app/' // 设置为你的仓库名称
+  // eslint-disable-next-line no-undef
+  base: process.env.VITE_GITHUB_PAGES ? '/chat-app/' : '/'
 })
