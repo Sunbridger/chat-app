@@ -174,6 +174,17 @@ npm run build
 npm run lint
 ```
 
+### GitHub Pages 部署
+
+项目配置了自动化部署，当向main分支推送代码时，会自动构建并部署到GitHub Pages。
+
+部署地址：https://sunbridger.github.io/chat-app/
+
+部署流程：
+1. 代码推送到main分支
+2. GitHub Actions自动触发构建流程
+3. 构建完成后自动部署到GitHub Pages
+
 ## 技术亮点
 
 1. **流式API集成**: 实现了类似ChatGPT的逐字显示效果
