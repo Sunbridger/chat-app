@@ -1,0 +1,384 @@
+#root {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.app {
+  display: flex;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+/* 左侧联系人列表 */
+.sidebar {
+  width: 300px;
+  background-color: #fff;
+  border-right: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-header {
+  padding: 15px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.sidebar-header h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: normal;
+  color: #333;
+}
+
+.contact-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  border-bottom: 1px solid #f0f0f0;
+  cursor: pointer;
+}
+
+.contact-item:hover {
+  background-color: #f5f5f5;
+}
+
+.contact-item.active {
+  background-color: #e9e9e9;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  margin-right: 12px;
+}
+
+.contact-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.contact-info h3 {
+  margin: 0 0 4px 0;
+  font-size: 15px;
+  font-weight: normal;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.contact-info p {
+  margin: 0;
+  font-size: 13px;
+  color: #999;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.contact-time {
+  font-size: 12px;
+  color: #999;
+  margin-left: 5px;
+}
+
+/* 右侧聊天区域 */
+.chat-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #fafafa;
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: #fff;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.chat-header .avatar {
+  margin-right: 10px;
+}
+
+.contact-name {
+  font-size: 16px;
+  color: #333;
+}
+
+.chat-messages {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.message {
+  display: flex;
+  margin-bottom: 15px;
+  max-width: 70%;
+}
+
+.message.other {
+  align-self: flex-start;
+}
+
+.message.own {
+  align-self: flex-end;
+}
+
+.message-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.message.other .message-content {
+  align-items: flex-start;
+}
+
+.message.own .message-content {
+  align-items: flex-end;
+}
+
+.message-text {
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 15px;
+  line-height: 1.4;
+  word-wrap: break-word;
+  max-width: 100%;
+  white-space: pre-wrap;
+  position: relative;
+}
+
+.message.other .message-text {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-top-left-radius: 0;
+}
+
+.message.own .message-text {
+  background-color: #9eea6a;
+  border-top-right-radius: 0;
+}
+
+.message-time {
+  font-size: 12px;
+  color: #999;
+  margin-top: 5px;
+}
+
+.message.own .message-time {
+  align-self: flex-end;
+}
+
+.message.other .message-time {
+  align-self: flex-start;
+}
+
+/* 正在输入动画 */
+.typing-indicator {
+  display: flex;
+  padding: 10px 0 0 0;
+}
+
+.typing-indicator span {
+  height: 8px;
+  width: 8px;
+  background-color: #999;
+  border-radius: 50%;
+  margin: 0 2px;
+  display: inline-block;
+  animation: typing 1.4s infinite ease-in-out;
+}
+
+.typing-indicator span:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.typing-indicator span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typing {
+  0%, 60%, 100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-5px);
+  }
+}
+
+/* 输入区域 */
+.chat-input {
+  display: flex;
+  padding: 10px;
+  background-color: #fff;
+  border-top: 1px solid #e0e0e0;
+}
+
+.chat-input textarea {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  resize: none;
+  height: 60px;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.chat-input button {
+  margin-left: 10px;
+  padding: 0 20px;
+  background-color: #0084ff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.chat-input button:hover {
+  background-color: #0077e6;
+}
+
+/* Markdown 样式 */
+.message-text ol,
+.message-text ul {
+  padding-left: 20px;
+  margin: 10px 0;
+}
+
+.message-text li {
+  margin-bottom: 5px;
+}
+
+.message-text h1,
+.message-text h2,
+.message-text h3,
+.message-text h4,
+.message-text h5,
+.message-text h6 {
+  margin: 15px 0 10px 0;
+  font-weight: bold;
+}
+
+.message-text h1 {
+  font-size: 24px;
+}
+
+.message-text h2 {
+  font-size: 22px;
+}
+
+.message-text h3 {
+  font-size: 20px;
+}
+
+.message-text h4 {
+  font-size: 18px;
+}
+
+.message-text h5 {
+  font-size: 16px;
+}
+
+.message-text h6 {
+  font-size: 14px;
+}
+
+.message-text p {
+  margin: 10px 0;
+}
+
+.message-text blockquote {
+  border-left: 4px solid #ddd;
+  padding-left: 10px;
+  margin: 10px 0;
+  color: #666;
+}
+
+.message-text code {
+  background-color: #f2f2f2;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-family: monospace;
+}
+
+.message-text pre {
+  background-color: #f8f8f8;
+  padding: 10px;
+  border-radius: 5px;
+  overflow-x: auto;
+  margin: 10px 0;
+}
+
+.message-text pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+.message-text a {
+  color: #0084ff;
+  text-decoration: none;
+}
+
+.message-text a:hover {
+  text-decoration: underline;
+}
+
+.message-text strong {
+  font-weight: bold;
+}
+
+.message-text em {
+  font-style: italic;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 80px;
+  }
+
+  .contact-info, .contact-time, .sidebar-header h2 {
+    display: none;
+  }
+
+  .contact-item {
+    justify-content: center;
+    padding: 15px 0;
+  }
+
+  .contact-item .avatar {
+    margin-right: 0;
+  }
+
+  .message {
+    max-width: 85%;
+  }
+}
